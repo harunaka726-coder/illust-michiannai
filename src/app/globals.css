@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fff8f1;
+  --foreground: #4a4038;
+  --paper: #fffdf8;
+  --accent: #ff8a65;
+  --border: #ede6dc;
+  --font-map-hand: var(--font-map-yomogi), cursive;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-map-zenmaru);
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(ellipse at 12% 0%, rgba(255, 138, 101, 0.12), transparent 42%),
+    radial-gradient(ellipse at 88% 100%, rgba(168, 216, 230, 0.16), transparent 46%),
+    var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.map-paper {
+  background-color: #ffffff;
+}
+
+.map-paper::after {
+  display: none;
+}
+
+.illustration-paper-texture {
+  display: none;
+}
+
+.hand-drawn-sketch {
+  filter: none;
+}
+
+@keyframes pin-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.pin-popup {
+  animation: pin-pop 0.28s ease-out both;
+}
+
+.pin-marker {
+  animation: pin-pop 0.22s ease-out both;
+}
+
+.leaflet-container {
+  font: inherit;
+  background: #fffdf8;
+  border-radius: 0;
+}
+
+.leaflet-control-zoom a {
+  border-radius: 12px !important;
+  color: #4a4038 !important;
+}
+
+.leaflet-control-attribution {
+  opacity: 0.5;
+  font-size: 10px !important;
+  background: rgba(255, 253, 248, 0.88) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  width: auto !important;
+}
+
+.leaflet-popup-tip-container,
+.leaflet-popup-tip {
+  display: none !important;
+}
+
+.leaflet-pin-dot {
+  background: transparent !important;
+  border: none !important;
+}
+
+.stamp-chip {
+  cursor: grab;
+}
+
+.stamp-chip:active {
+  cursor: grabbing;
 }

@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 散策マップ工房（Illustrator Map）
 
-## Getting Started
+指定した地図範囲を、雑誌の特集記事のような **手描き風・水彩画風イラストマップ** にカスタマイズする Web アプリの MVP です。
 
-First, run the development server:
+## セットアップ
 
 ```bash
+# 依存関係（初回のみ）
+npm install
+
+# Mapbox トークンを設定
+copy .env.local.example .env.local
+# .env.local を開き NEXT_PUBLIC_MAPBOX_TOKEN を記入
+# 取得先: https://account.mapbox.com/access-tokens/
+
+# 開発サーバー
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで [http://localhost:3000](http://localhost:3000) を開きます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## いまできること（Stage 1）
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Leaflet + CARTO タイルでインタラクティブ地図を表示（トークン不要）
+2. 施設クリック → Overpass（OSM）で POI 取得 → かわいいアイコンがポップ
+3. ダブルクリック →「My Home」などのカスタムピン追加
+4. サイドバーで画風テーマ切替（水彩 / レトロペン画 / 絵本ポップ）
+5. PNG ダウンロードボタン（html2canvas）
 
-## Learn More
+## ディレクトリ構成
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/                 # Next.js App Router
+  components/
+    MapComponent.tsx   # 地図・POI取得・ピン表示
+    Sidebar.tsx        # テーマ切替・ピン管理・書出
+    MapPinPopup.tsx    # 浮き上がりアニメ付きポップアップ
+  lib/
+    themes.ts          # 画風テーマ定義
+    poiCategories.ts   # amenity/shop → カテゴリ & アイコン
+  store/
+    mapStore.ts        # Zustand（theme / pins）
+  types/
+    map.ts
+public/assets/icons/   # 将来の自作アイコン差替用
+  watercolor/
+  retro/
+  picturebook/
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 技術スタック
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Next.js (App Router) + TypeScript
+- Tailwind CSS
+- Mapbox GL JS / react-map-gl
+- Zustand
+- Lucide React（ダミーアイコン）
+- html2canvas
 
-## Deploy on Vercel
+## 次のステップ案
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Overpass API 連携で OSM タグをより正確に取得
+- 道路の手描き風 SVG フィルター強化
+- 自作水彩アイコン PNG/SVG の差替
+- Mapbox `map.getCanvas()` による高品質 PNG 書出
