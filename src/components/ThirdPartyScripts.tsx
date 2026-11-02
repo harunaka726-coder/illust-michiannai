@@ -1,6 +1,7 @@
 import Script from "next/script";
-import { ADSENSE_CLIENT, GA_MEASUREMENT_ID } from "@/lib/site";
+import { GA_MEASUREMENT_ID } from "@/lib/site";
 
+/** GA のみ。AdSense は layout の <head> 直書き（審査クローラ対策） */
 export function ThirdPartyScripts() {
   return (
     <>
@@ -16,13 +17,6 @@ export function ThirdPartyScripts() {
           gtag('config', '${GA_MEASUREMENT_ID}');
         `}
       </Script>
-      <Script
-        id="adsense"
-        async
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
-        strategy="afterInteractive"
-        crossOrigin="anonymous"
-      />
     </>
   );
 }

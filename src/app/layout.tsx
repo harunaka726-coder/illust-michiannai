@@ -6,12 +6,18 @@ import {
   Yomogi,
   Zen_Maru_Gothic,
 } from "next/font/google";
+import { JsonLd } from "@/components/JsonLd";
 import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
 import { ThirdPartyScripts } from "@/components/ThirdPartyScripts";
-import { ADSENSE_CLIENT, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
+import {
+  ADSENSE_CLIENT,
+  SITE_DESCRIPTION,
+  SITE_KEYWORDS,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/site";
 import "./globals.css";
 
-// UI本体のみ preload。装飾フォントは必要時に遅延読み込み（数百ファイルの preload を防ぐ）
 const zenmaru = Zen_Maru_Gothic({
   weight: ["400", "700"],
   subsets: ["latin"],
@@ -53,9 +59,49 @@ const kaisei = Kaisei_Decol({
 });
 
 export const metadata: Metadata = {
-  title: SITE_NAME,
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} | オリジナル道案内マップ作成`,
+    template: `%s | ${SITE_NAME}`,
+  },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
+  keywords: [...SITE_KEYWORDS],
+  authors: [{ name: "イラスト道案内" }],
+  creator: "イラスト道案内",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "ja_JP",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} | オリジナル道案内マップ作成`,
+    description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: "/icons/icon-512.png",
+        width: 512,
+        height: 512,
+        alt: SITE_NAME,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: `${SITE_NAME} | オリジナル道案内マップ作成`,
+    description: SITE_DESCRIPTION,
+    images: ["/icons/icon-512.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -93,7 +139,16 @@ export default function RootLayout({
       lang="ja"
       className={`${yomogi.variable} ${kiwi.variable} ${mplus.variable} ${zenmaru.variable} ${kaisei.variable} h-full antialiased`}
     >
+      <head>
+        {/* AdSense 審査用: 初期HTMLの head に生の script を置く */}
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="min-h-full font-[family-name:var(--font-map-zenmaru)]">
+        <JsonLd />
         <ThirdPartyScripts />
         {children}
         <ServiceWorkerRegister />

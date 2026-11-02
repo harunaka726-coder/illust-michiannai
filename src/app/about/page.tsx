@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { DocShell } from "@/components/DocShell";
 
 export const metadata: Metadata = {
-  title: "はじめに・遊び方 | イラスト道案内",
-  description: "イラスト道案内の使い方と注意事項",
-};
+  title: "はじめに・遊び方",
+  description:
+    "イラスト道案内の使い方。住所検索から範囲選択、フリー素材配置、PNG書き出しまで。結婚式案内図・散策マップ・イベント案内にも使える無料ツールです。",
+}
 
 export default function AboutPage() {
   return (
@@ -46,6 +47,16 @@ export default function AboutPage() {
           <li>スタンプを選んで Delete / Backspace で削除</li>
           <li>右側の＋−で用紙を拡大・縮小（スクロールで細部を確認）</li>
           <li>フリー素材サイトへのリンクや、キーワード比較パネルも使えます</li>
+        </ul>
+      </section>
+
+      <section className="space-y-2">
+        <h2 className="text-base font-semibold text-[#4A4038]">こんなときに</h2>
+        <ul className="list-disc space-y-1.5 pl-5">
+          <li>結婚式・二次会の会場案内図を、手書き風に仕上げたい</li>
+          <li>地域イベントやマルシェの散策マップを作りたい</li>
+          <li>旅行のしおりに、オリジナルの観光マップを添えたい</li>
+          <li>お店まわりの道案内を、チラシやSNS用に作りたい</li>
         </ul>
       </section>
 
