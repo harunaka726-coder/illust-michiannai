@@ -48,7 +48,10 @@ export default function PrivacyPage() {
         <h2 className="text-base font-semibold text-[#4A4038]">3. 外部サービス</h2>
         <p>
           場所検索・地図データ取得のため、OpenStreetMap / Nominatim
-          等の外部サービスを利用します。各サービスのポリシーもご確認ください。広告を掲載する場合は、広告配信事業者のクッキー等が使用されることがあります。
+          等の外部サービスを利用します。アクセス解析のため Google Analytics（Google
+          LLC）、広告配信のため Google AdSense（Google
+          LLC）を利用し、Cookie
+          等が使用されることがあります。各サービスのポリシーもご確認ください。
         </p>
       </section>
 

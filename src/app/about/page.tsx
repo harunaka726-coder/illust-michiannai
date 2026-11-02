@@ -13,6 +13,10 @@ export default function AboutPage() {
         「イラスト道案内」は、OpenStreetMap
         の道・線路・公園・川をベースに、フリー素材や自分の画像で道案内マップを作るツールです。
       </p>
+      <p className="rounded-lg border border-[#EDE6DC] bg-[#FFFDF8] px-3 py-2 text-[13px]">
+        地図と用紙を並べて編集するツールのため、<strong>パソコンでの利用を推奨</strong>
+        します（スマホ向けの本格対応は今後の課題です）。
+      </p>
 
       <section className="space-y-2">
         <h2 className="text-base font-semibold text-[#4A4038]">つくり方（5ステップ）</h2>

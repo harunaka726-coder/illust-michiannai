@@ -7,7 +7,8 @@ import {
   Zen_Maru_Gothic,
 } from "next/font/google";
 import { ServiceWorkerRegister } from "@/components/ServiceWorkerRegister";
-import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
+import { ThirdPartyScripts } from "@/components/ThirdPartyScripts";
+import { ADSENSE_CLIENT, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import "./globals.css";
 
 // UI本体のみ preload。装飾フォントは必要時に遅延読み込み（数百ファイルの preload を防ぐ）
@@ -63,6 +64,9 @@ export const metadata: Metadata = {
   formatDetection: {
     telephone: false,
   },
+  other: {
+    "google-adsense-account": ADSENSE_CLIENT,
+  },
   icons: {
     icon: [
       { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
@@ -90,6 +94,7 @@ export default function RootLayout({
       className={`${yomogi.variable} ${kiwi.variable} ${mplus.variable} ${zenmaru.variable} ${kaisei.variable} h-full antialiased`}
     >
       <body className="min-h-full font-[family-name:var(--font-map-zenmaru)]">
+        <ThirdPartyScripts />
         {children}
         <ServiceWorkerRegister />
       </body>

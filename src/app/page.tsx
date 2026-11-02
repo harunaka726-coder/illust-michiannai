@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { ClientMap } from "@/components/ClientMap";
 import { IllustrationCanvas } from "@/components/IllustrationCanvas";
 import { LoadingOverlay } from "@/components/LoadingOverlay";
+import { MobileNotice } from "@/components/MobileNotice";
 import { Sidebar } from "@/components/Sidebar";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -69,6 +70,7 @@ export default function HomePage() {
     >
       <LoadingOverlay />
       <SiteHeader />
+      <MobileNotice />
       <div className="flex min-h-0 flex-1 overflow-hidden">
         <Sidebar />
         <main className="flex min-h-0 min-w-0 flex-1">
