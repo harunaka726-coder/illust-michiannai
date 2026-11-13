@@ -1,7 +1,7 @@
 export const CONTACT_URL = "https://forms.gle/EPKBN8aeJK29TSuaA";
 
 export const SITE_NAME = "イラスト道案内";
-export const SITE_URL = "https://illust-michiannai.vercel.app";
+export const SITE_URL = "https://illust.harunakajima.com";
 export const SITE_DESCRIPTION =
   "住所を選んで範囲を囲むだけ。道・線路・公園・川のベース地図に、フリー素材や自分の画像でオリジナルの道案内マップ・散策マップを作れる無料の個人開発ツールです。";
 
