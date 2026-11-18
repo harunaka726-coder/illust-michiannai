@@ -1,4 +1,5 @@
 export const CONTACT_URL = "https://forms.gle/EPKBN8aeJK29TSuaA";
+export const OTHER_WORKS_URL = "https://harunakajima.com/";
 
 export const SITE_NAME = "イラスト道案内";
 export const SITE_URL = "https://illust.harunakajima.com";
