@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CONTACT_URL, SITE_NAME } from "@/lib/site";
+import { CONTACT_URL, OTHER_WORKS_URL, SITE_NAME } from "@/lib/site";
 
 export function SiteHeader({
   showStudioCta = false,
@@ -47,6 +47,14 @@ export function SiteHeader({
               作ってみる
             </a>
           )}
+          <a
+            href={OTHER_WORKS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#FF8A65]"
+          >
+            他の作品はこちら
+          </a>
         </nav>
       </div>
     </header>
